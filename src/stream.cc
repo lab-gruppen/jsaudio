@@ -28,7 +28,7 @@ NAN_METHOD(JsPaStream::New) {
     // Invoked as plain function `JsPaStream(...)`, turn into construct call.
     const int argc = 1;
     LocalValue argv[argc] = { info[0] };
-    LocalFunction cons =  Nan::New<Function>(constructor);
-    info.GetReturnValue().Set(cons->NewInstance(argc, argv));
+    v8::Local<v8::Function> cons =  Nan::New(constructor);
+    info.GetReturnValue().Set(Nan::NewInstance(cons, argc, argv).ToLocalChecked());
   }
 }
